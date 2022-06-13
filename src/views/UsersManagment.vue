@@ -1,17 +1,15 @@
 <template>
   <div class="container mx-auto mb-5 lg:mb-11">
-    <BaseBlock class="lg:mb-[106px]">
-      <UserCreate @create-user="addUser" />
-    </BaseBlock>
+    <UserCreate @create-user="addUser" />
 
     <BaseLoader :is-loading="isDataLoading">
-      <BaseBlock v-for="user in users" :key="user.id">
-        <UserItem
-          :user="user"
-          @remove="removeUser"
-          @update-color="updateColor"
-        />
-      </BaseBlock>
+      <UserItem
+        v-for="user in users"
+        :key="user.id"
+        :user="user"
+        @remove-user="removeUser"
+        @update-color="updateColor"
+      />
     </BaseLoader>
   </div>
 </template>
@@ -20,7 +18,6 @@
 import { onMounted, ref } from "vue";
 import UserCreate from "../components/UserCreate.vue";
 import UserItem from "../components/UserItem.vue";
-import BaseBlock from "../components/Base/BaseBlock.vue";
 import BaseLoader from "../components/Base/BaseLoader.vue";
 import { getUsers } from "@/services/users";
 

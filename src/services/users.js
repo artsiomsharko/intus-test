@@ -10,6 +10,12 @@ export const getUsers = async () => {
 };
 
 export const createUser = async (user) => {
-  const response = await instance.post("users", user);
+  const encodedUser = JSON.stringify(user);
+  const response = await instance.post("users", encodedUser, {
+    headers: {
+      accept: "*/*",
+      "Content-Type": "application/json",
+    },
+  });
   return response.data;
 };

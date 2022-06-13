@@ -1,26 +1,31 @@
 <template>
-  <form class="flex flex-col items-center gap-y-6 pt-5 pb-7 px-4">
-    <h3 class="text-[1.625rem] lg:text-[2rem] sm:leading-[2.625rem]">
-      Create user
-    </h3>
-    <BaseInput
-      v-model="form.name.value"
-      :error-message="form.name.errorMessage"
-      label="Full Name"
-      is-required
-      @blur="form.name.isTouched = true"
-    />
-    <BaseInput
-      v-model="form.job.value"
-      :error-message="form.job.errorMessage"
-      label="Job"
-      placeholder="leader"
-      is-required
-      @blur="form.job.isTouched = true"
-    />
+  <div
+    class="bg-white lg:max-w-[730px] mx-3 lg:mx-auto lg:mb-[106px] mt-[42px] shadow-box rounded-3xl"
+  >
+    <form class="flex flex-col items-center gap-y-6 pt-5 pb-7 px-4">
+      <h2 class="text-[1.625rem] lg:text-[2rem] sm:leading-[2.625rem]">
+        Create user
+      </h2>
 
-    <BaseButton @click="submitHandler">Submit</BaseButton>
-  </form>
+      <BaseInput
+        v-model="form.name.value"
+        :error-message="form.name.errorMessage"
+        label="Full Name"
+        required
+        @blur="form.name.isTouched = true"
+      />
+      <BaseInput
+        v-model="form.job.value"
+        :error-message="form.job.errorMessage"
+        label="Job"
+        placeholder="leader"
+        required
+        @blur="form.job.isTouched = true"
+      />
+
+      <BaseButton @click="submitHandler">Submit</BaseButton>
+    </form>
+  </div>
 </template>
 
 <script setup>
@@ -74,17 +79,18 @@ watch(
 );
 
 const clearForm = () => {
-  form.name.value = "";
-  form.name.isTouched = false;
-  form.job.value = "";
-  form.job.isTouched = false;
+  Object.keys(form).forEach((key) => {
+    form[key].value = "";
+    form[key].isTouched = false;
+    form[key].errorMessage = null;
+  });
 };
 
 const submitHandler = async () => {
-  form.name.isTouched = true;
-  form.job.isTouched = true;
-  validateField(form.name);
-  validateField(form.job);
+  Object.keys(form).forEach((key) => {
+    form[key].isTouched = true;
+    validateField(form[key]);
+  });
 
   if (isFormInvalid.value) return;
 
@@ -94,9 +100,9 @@ const submitHandler = async () => {
   };
 
   try {
+    clearForm();
     const createdUser = await createUser(preparedForm);
     emit("createUser", createdUser);
-    clearForm();
   } catch (e) {
     alert(e.message);
   }
