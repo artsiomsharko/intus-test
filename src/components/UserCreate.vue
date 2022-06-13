@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { reactive, computed, watch, defineEmits } from "vue";
+import { reactive, computed, watch } from "vue";
 import BaseInput from "../components/Base/BaseInput.vue";
 import BaseButton from "../components/Base/BaseButton.vue";
 import { requiredError, lengthError } from "../utils/validators";
