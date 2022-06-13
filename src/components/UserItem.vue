@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed } from "vue";
+import { computed } from "vue";
 import BaseButton from "../components/Base/BaseButton.vue";
 import { randomColor } from "../utils/colors";
 
