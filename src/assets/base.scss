@@ -6,12 +6,8 @@
 
 * {
   font-family: "Rubik", sans-serif;
-}
 
-.title-1 {
-  @apply text-base sm:text-[1.625rem] lg:text-[2rem];
-}
-
-.title-2 {
-  @apply text-base sm:text-[1.25rem] lg:text-[1.5rem];
+  &:focus {
+    outline: none;
+  }
 }
