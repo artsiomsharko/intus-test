@@ -11,7 +11,7 @@
         v-model="form.name.value"
         :error-message="form.name.errorMessage"
         label="Full Name"
-        is-required
+        required
         @blur="form.name.isTouched = true"
       />
       <BaseInput
@@ -19,7 +19,7 @@
         :error-message="form.job.errorMessage"
         label="Job"
         placeholder="leader"
-        is-required
+        required
         @blur="form.job.isTouched = true"
       />
 
@@ -87,10 +87,10 @@ const clearForm = () => {
 };
 
 const submitHandler = async () => {
-  form.name.isTouched = true;
-  form.job.isTouched = true;
-  validateField(form.name);
-  validateField(form.job);
+  Object.keys(form).forEach((key) => {
+    form[key].isTouched = true;
+    validateField(form[key]);
+  });
 
   if (isFormInvalid.value) return;
 

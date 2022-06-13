@@ -19,7 +19,7 @@
       />
 
       <img
-        v-if="isRequired"
+        v-if="required"
         src="@/assets/icons/star.svg"
         alt="required"
         class="text-red-500 -ml-2"
@@ -54,7 +54,7 @@ const props = defineProps({
     default: "",
   },
 
-  isRequired: {
+  required: {
     type: Boolean,
     default: false,
   },
