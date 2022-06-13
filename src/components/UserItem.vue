@@ -1,29 +1,35 @@
 <template>
   <div
-    class="relative mx-auto max-w-[440px] flex flex-col items-center gap-y-6 py-7 sm:pt-10 sm:pb-[3.75rem] px-4 sm:px-0"
+    class="bg-white lg:max-w-[730px] m-4 lg:mx-auto lg:mt-11 shadow-box rounded-3xl"
   >
-    <h3 class="text-xl sm:text-[1.5rem] leading-[31px]">User #{{ user.id }}</h3>
-
-    <div class="w-full">
-      <p class="flex justify-between w-full mb-3">
-        <span class="text-gray-600 text-sm leading-5">Name</span>
-        <span class="font-medium leading-4">{{ fullName }}</span>
-      </p>
-
-      <p class="flex justify-between w-full">
-        <span class="text-gray-600 text-sm leading-5">Color</span>
-        <span class="font-medium leading-4">{{ color }}</span>
-      </p>
-    </div>
-
-    <button
-      class="absolute pr-4 sm:pr-0 right-0 lg:-right-[100px] hover:opacity-50 focus:opacity-50 transition-opacity"
-      @click="removeUser"
+    <div
+      class="relative mx-auto max-w-[440px] flex flex-col items-center gap-y-6 py-7 sm:pt-10 sm:pb-[3.75rem] px-4 sm:px-0"
     >
-      <img src="@/assets/icons/trash.svg" />
-    </button>
+      <h3 class="text-xl sm:text-[1.5rem] leading-[1.938rem]">
+        User #{{ user.id }}
+      </h3>
 
-    <BaseButton @click="generateColor">Generate color</BaseButton>
+      <div class="w-full">
+        <p class="flex justify-between w-full mb-3">
+          <span class="text-gray-600 text-sm leading-5">Name</span>
+          <span class="font-medium leading-4">{{ fullName }}</span>
+        </p>
+
+        <p class="flex justify-between w-full">
+          <span class="text-gray-600 text-sm leading-5">Color</span>
+          <span class="font-medium leading-4">{{ color }}</span>
+        </p>
+      </div>
+
+      <button
+        class="absolute pr-4 sm:pr-0 right-0 lg:-right-[100px] hover:opacity-50 focus:opacity-50 transition-opacity"
+        @click="removeUser"
+      >
+        <img src="@/assets/icons/trash.svg" alt="remove" />
+      </button>
+
+      <BaseButton @click="generateColor">Generate color</BaseButton>
+    </div>
   </div>
 </template>
 
@@ -39,7 +45,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["remove", "updateColor"]);
+const emit = defineEmits(["removeUser", "updateColor"]);
 
 const fullName = computed(() => {
   return props.user?.last_name
@@ -56,6 +62,6 @@ const generateColor = () => {
 };
 
 const removeUser = () => {
-  emit("remove", props.user);
+  emit("removeUser", props.user);
 };
 </script>

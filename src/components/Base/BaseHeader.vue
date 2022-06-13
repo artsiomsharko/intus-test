@@ -1,8 +1,8 @@
 <template>
   <header
-    class="h-[60px] sm:h-[85px] shadow-box flex items-center justify-center"
+    class="bg-white h-[60px] sm:h-[85px] shadow-box flex items-center justify-center"
   >
-    <h3 class="text-base sm:text-[1.625rem] lg:text-[2rem]">User managment</h3>
+    <h1 class="text-base sm:text-[1.625rem] lg:text-[2rem]">User managment</h1>
   </header>
 </template>
 
