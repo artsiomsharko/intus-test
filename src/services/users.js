@@ -1,4 +1,4 @@
-import { apiClient } from "@/services/apiClient";
+import { apiClient } from "@/api/apiClient";
 
 export const getUsers = async () => {
   const response = await apiClient.get("users?per_page=5");
